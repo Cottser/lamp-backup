@@ -287,8 +287,10 @@ if [ "$VERBOSE" -ge 0 ]; then
     echo "---------------"
     now=$(date +%s)
     echo "Elapsed time: $((now - $STARTTIME)) seconds."
-    echo "Disk space used:"
-    du -sh $fullpath
+    if [ "$KEEP_NUM_RECENT" -ne "0" ]; then
+        echo "Disk space used:"
+        du -sh $fullpath
+    fi
     echo "Disk space available on backup partition:"
     df -h $OUTPUT_BASE_DIR
 fi
